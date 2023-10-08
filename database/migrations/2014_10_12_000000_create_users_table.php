@@ -17,10 +17,12 @@ class CreateUsersTable extends Migration
             $table->id();
             $table->string('name');
             $table->enum('account_type', ['Individual', 'Business']);
-            $table->double('balance', 8, 2);
+            $table->double('balance', 8, 2)->default(0);
             $table->string('email')->unique();
             $table->string('password');
             $table->rememberToken();
+            $table->timestamp('updated_at')->nullable();
+            $table->timestamp('created_at')->nullable();
         });
     }
 

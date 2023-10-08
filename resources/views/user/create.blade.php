@@ -24,7 +24,7 @@
               <label for="account_type">Account Type</label>
               <select name="account_type" id="account_type" required>
                 <option value="">--select--</option>
-                <option value="Personal">Personal</option>
+                <option value="Individual">Individual</option>
                 <option value="Business">Business</option>
               </select>
             </div>

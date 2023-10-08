@@ -13,6 +13,9 @@
           <h2>Create User</h2>
         </div>
         <div class="card-body">
+            @if(Session::has('success'))
+            <p style="color:green">{{ Session::get('success') }}</p>
+            @endif
           <form  action="{{ route('users_create') }}" method="POST">
             @csrf
             <input type="hidden" name="create_new_user" value="yes">

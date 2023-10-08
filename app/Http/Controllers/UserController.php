@@ -29,6 +29,33 @@ class UserController extends Controller
         $post->password =  md5($request->input('password'));
         $post->save();
     
-        return redirect('/users')->with('success', 'User Created!');
+        return redirect('/login')->with('success', 'User Created!');
+    }
+
+    public function login(Request $request)
+    {
+        //remove single session
+        return view('user.login');
+    }
+
+    public function sing_in(Request $request)
+    {
+        $this->validate($request, [
+            'email'         => 'required|email',
+            'password'      => 'required',
+        ]);
+    
+        $users = User::select('*')
+             ->where([
+                 ['email', '=', $request->input('email')],
+                 ['password', '=', md5($request->input('password'))]
+             ])
+             ->first();
+        if (!empty($users->id)) {
+            Session::put('login', 1);
+            return redirect('/')->with('success', 'Succesfully login!');
+        }else {
+            return redirect('/login')->with('fail', 'User or password is wrong!');
+        }
     }
 }

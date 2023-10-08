@@ -16,7 +16,10 @@ use App\Http\Controllers\UserController;
 
 Route::get('/', function () {
     return view('welcome');
-});
+})->middleware('checksession');
 
 Route::get('/users', [UserController::class, 'index']);
 Route::post('/usersCreate', [UserController::class, 'create'])->name('users_create');
+Route::get('/login', [UserController::class, 'login'])->name('login');
+Route::post('/sing_in', [UserController::class, 'sing_in'])->name('sing_in');
+

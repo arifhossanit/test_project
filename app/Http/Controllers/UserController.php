@@ -52,7 +52,7 @@ class UserController extends Controller
              ])
              ->first();
         if (!empty($users->id)) {
-            Session::put('login', 1);
+            Session::put('login', $users->id);
             return redirect('/')->with('success', 'Succesfully login!');
         }else {
             return redirect('/login')->with('fail', 'User or password is wrong!');

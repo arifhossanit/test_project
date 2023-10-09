@@ -2,6 +2,7 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\TransactionController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +15,7 @@ use App\Http\Controllers\UserController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->middleware('checksession');
+Route::get('/', [TransactionController::class, 'index'])->middleware('checksession');
 
 Route::get('/users', [UserController::class, 'index']);
 Route::post('/usersCreate', [UserController::class, 'create'])->name('users_create');
